@@ -1,3 +1,4 @@
+import 'package:api_testing_3/Widgets/drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -27,28 +28,12 @@ class _HomePageState extends State<HomePage> {
       });
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       appBar: MyAppBar(),
-      drawer: Drawer(
-        backgroundColor: Colors.grey,
-        child: ListView(
-          padding: const EdgeInsets.all(1),
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.black12,
-              ),
-                child:
-                const Text('AFRICA')
-
-            )
-          ],
-        )
-      ),
+      drawer: MyDrawer(),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -246,14 +231,14 @@ class _HomePageState extends State<HomePage> {
             children: [
               Column(
                 children: [
-                  Icon(Icons.thermostat_outlined),
+                  Icon(Icons.wind_power_sharp),
                   Text('${_weather?.windSpeed} m/s'),
                   const Text('Wind Speed')
                 ],
               ),
               Column(
                 children: [
-                  Icon(Icons.water_drop),
+                  Icon(Icons.speed_rounded),
                   Text('${_weather?.pressure} atm'),
                   const Text('Pressure')
                 ],
