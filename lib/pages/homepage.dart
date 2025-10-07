@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weather/weather.dart';
-import 'Widgets/app_bar.dart';
-import 'consts.dart';
+import '../Widgets/app_bar.dart';
+import '../consts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
