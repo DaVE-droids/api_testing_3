@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weather/weather.dart';
+import 'Widgets/app_bar.dart';
 import 'consts.dart';
 
 class HomePage extends StatefulWidget {
@@ -30,7 +31,24 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
+      appBar: MyAppBar(),
+      drawer: Drawer(
+        backgroundColor: Colors.grey,
+        child: ListView(
+          padding: const EdgeInsets.all(1),
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.black12,
+              ),
+                child:
+                const Text('AFRICA')
 
+            )
+          ],
+        )
+      ),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
