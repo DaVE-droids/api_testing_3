@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:api_testing_3/pages/countries_page.dart';
 import 'package:flutter/material.dart';
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -25,8 +26,9 @@ class MyDrawer extends StatelessWidget {
                   color: Colors.black,
                   fontSize: 20
               ),
-              onTap: () {
-                Navigator.pop(context);
+              onTap: () async{
+                Navigator.pop(context,);
+                final selectedCountry = await Navigator.push(context, MaterialPageRoute(builder: (context) => CountryPage()));
               },
             )
           ],

@@ -6,7 +6,7 @@ PreferredSizeWidget MyAppBar() {
       leading: IconButton(onPressed: () {
         scaffoldKey.currentState?.openDrawer();
       },
-          icon: Image.asset('assets/images/button.jpg', fit: BoxFit.fill,)),
+          icon: Image.asset('assets/images/button.jpg', fit: BoxFit.fill, color: Colors.white54,)),
       centerTitle: true,
       backgroundColor: Colors.black87,
       foregroundColor: Colors.white,
