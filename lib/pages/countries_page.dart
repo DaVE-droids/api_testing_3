@@ -1,3 +1,4 @@
+import 'package:api_testing_3/pages/homepage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -15,30 +16,36 @@ class _CountryPageState extends State <CountryPage> {
   @override
   void initState() {
     super.initState();
-    fetchAfricanCountries();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      fetchAfricanCountries();
+    });
   }
-
   Future<void> fetchAfricanCountries() async {
-    const url = 'http://worldtimeapi.org/api/timezone/Africa';
+    const url = 'https://worldtimeapi.org/api/timezone/Africa';
 
     try {
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
-        final List<dynamic> data = jsonDecode(response.body);
+        print( 'Response code: ${response.statusCode}');
+        final List<String> data = jsonDecode(response.body);
+        print('The Response is:$data');
         final List<String> newName = data.map((item) {
           final n = item.toString();
-          return n.replaceFirst('Africa', '');
+          return n.replaceFirst('Africa/', '').replaceAll('_', ' ');
         }).toList();
+
         setState(() {
           isLoading = false;
           errorMessage = null;
           countries = newName;
+          print('data fetch successful${response.body}');
         });
       } else {
         setState(() {
           isLoading = false;
           errorMessage = 'Error ${response.statusCode}';
+          print('error fetching data');
         });
       }
     } catch (e) {
@@ -67,6 +74,7 @@ class _CountryPageState extends State <CountryPage> {
   title: Text(name),
       onTap: (){
     Navigator.pop(context, name);
+    print('Code is working');
       },
   );
   }

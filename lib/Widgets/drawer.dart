@@ -1,8 +1,8 @@
-import 'dart:ui';
+
 import 'package:api_testing_3/pages/countries_page.dart';
 import 'package:flutter/material.dart';
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
+  const MyDrawer({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class MyDrawer extends StatelessWidget {
                   color: Colors.black12,
                 ),
                 child:
-                const Text('AFRICA')
+                 Text('AFRICA')
             ),
             ListTile(
               leading: Icon(Icons.flag, size: 40,),
@@ -28,8 +28,13 @@ class MyDrawer extends StatelessWidget {
               ),
               onTap: () async{
                 Navigator.pop(context,);
-                final selectedCountry = await Navigator.push(context, MaterialPageRoute(builder: (context) => CountryPage()));
-              },
+                final selected = await Navigator.push(context, MaterialPageRoute(builder: (context) => CountryPage()));
+                if (selected != null){
+                  print('I selected: $selected');
+                  Navigator.pop(context, selected, );
+
+                }
+              }
             )
           ],
         )

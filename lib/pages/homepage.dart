@@ -15,18 +15,26 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final WeatherFactory _wf = WeatherFactory(OPENWEATHER_API_KEY);
+  String selectedCountry = 'Lagos';
 
   Weather? _weather;
 
   @override
   void initState() {
     super.initState();
-    _wf.currentWeatherByCityName('Lagos').then((w) {
+    _fetchWeather();
+  }
+  Future <void> _fetchWeather()async{
+    try{
+      final cLeanedCity = selectedCountry.replaceFirst('_', ' ');
+      Weather w = await _wf.currentWeatherByCityName(cLeanedCity);
       setState(() {
         _weather = w;
-        print("The weather: $_weather");
+        print('Weather for: $cLeanedCity');
       });
-    });
+    }catch (e){
+      print('Error $e');
+    }
   }
   @override
   Widget build(BuildContext context) {
