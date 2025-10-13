@@ -2,7 +2,9 @@
 import 'package:api_testing_3/pages/countries_page.dart';
 import 'package:flutter/material.dart';
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key, });
+  final Function(String)?
+  onCountrySelected;
+  const MyDrawer({super.key, this.onCountrySelected});
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +30,10 @@ class MyDrawer extends StatelessWidget {
               ),
               onTap: () async{
                 Navigator.pop(context,);
-                final selected = await Navigator.push(context, MaterialPageRoute(builder: (context) => CountryPage()));
-                if (selected != null){
-                  print('I selected: $selected');
-                  Navigator.pop(context, selected, );
+                final onMenuTapped = await Navigator.push(context, MaterialPageRoute(builder: (context) => CountryPage()));
+                if (onMenuTapped != null && onCountrySelected!= null) {
+                  print('I selected: $onMenuTapped');
+                  onCountrySelected!(onMenuTapped);
 
                 }
               }

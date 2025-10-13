@@ -15,7 +15,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final WeatherFactory _wf = WeatherFactory(OPENWEATHER_API_KEY);
-  String selectedCountry = 'Lagos';
+  String cityName = 'Lagos';
+  bool isLoading = true;
+
 
   Weather? _weather;
 
@@ -26,11 +28,12 @@ class _HomePageState extends State<HomePage> {
   }
   Future <void> _fetchWeather()async{
     try{
-      final cLeanedCity = selectedCountry.replaceFirst('_', ' ');
-      Weather w = await _wf.currentWeatherByCityName(cLeanedCity);
+      final cleanedCity = cityName.replaceAll('_', ' ');
+      Weather w = await _wf.currentWeatherByCityName(cleanedCity);
       setState(() {
         _weather = w;
-        print('Weather for: $cLeanedCity');
+        isLoading = false;
+        print('Weather for: $cleanedCity');
       });
     }catch (e){
       print('Error $e');
@@ -41,7 +44,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: MyAppBar(),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(
+        onCountrySelected: (selectedCountry)async{
+          setState(() {
+            cityName = selectedCountry;
+          });
+          await _fetchWeather();
+
+        },
+      ),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
