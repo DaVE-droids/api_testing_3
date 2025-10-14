@@ -10,7 +10,7 @@ PreferredSizeWidget MyAppBar() {
       centerTitle: true,
       backgroundColor: Colors.black87,
       foregroundColor: Colors.white,
-      title: Text(
+      title: const Text(
         'African Weather',
         style:
         TextStyle(
