@@ -1,4 +1,4 @@
-# api_testing_3
+# african_weather_app
 
 A new Flutter project.
 
